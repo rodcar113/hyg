@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>INNOVACIÓN INDUSTRIAL HYG | Soluciones Industriales</title>
+    <meta name="description" content="Innovación Industrial HYG: suministro de materiales, equipos, soluciones integrales para construcción e industria en México. Atención personalizada y entregas confiables.">
+    <!-- Google Fonts: Montserrat + Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- GSAP y ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f4fa;
+            font-family: 'Poppins', sans-serif;
+            color: #1e2f3f;
+            overflow-x: hidden;
+        }
+
+        /* Tipografías asignadas */
+        h1, h2, h3, h4, .btn, .nav-links a, .hero-boton, .section-header h2, .valor-titulo, footer, .logo-text, .cta-title {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        p, .hero-sub, .servicio-card p, .sector-chip, .valor-desc, .contacto-texto, .footer-copy, .nosotros-texto {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* PALETA INVERTIDA: Azul como fondo principal, blanco/gris para textos */
+        :root {
+            --azul-profundo: #274574;
+            --azul-oscuro: #1e3a5f;
+            --gris-claro: #eef2f8;
+            --blanco-puro: #ffffff;
+            --gris-suave: #cbd5e1;
+            --azul-transparente: rgba(39, 69, 116, 0.08);
+            --azul-gradiente: linear-gradient(135deg, #274574 0%, #1a3557 100%);
+        }
+
+        /* Contenedor */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* HEADER FIXED con fondo azul y logo blanco */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1100;
+            background: var(--azul-profundo);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.2s;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            flex-wrap: wrap;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-icon {
+            background: var(--blanco-puro);
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 24px;
+            color: var(--azul-profundo);
+            overflow: hidden;
+        }
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .logo-text h1 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--blanco-puro);
+            line-height: 1.2;
+        }
+        .logo-text span {
+            font-size: 0.7rem;
+            color: var(--gris-suave);
+            font-family: 'Poppins', sans-serif;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--gris-claro);
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover {
+            color: var(--blanco-puro);
+        }
+        .menu-icon {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--blanco-puro);
+        }
+
+        /* Botones: ahora estilo invertido (blanco con texto azul) */
+        .btn-primary {
+            background: var(--blanco-puro);
+            color: var(--azul-profundo);
+            padding: 12px 34px;
+            border-radius: 40px;
+            font-weight: 700;
+            display: inline-block;
+            text-decoration: none;
+            transition: 0.25s;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background: #eef2fa;
+            transform: translateY(-3px);
+            color: var(--azul-profundo);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--blanco-puro);
+            color: var(--blanco-puro);
+            padding: 10px 30px;
+            border-radius: 40px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            background: var(--blanco-puro);
+            color: var(--azul-profundo);
+        }
+
+        /* Secciones generales */
+        section {
+            padding: 100px 0;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--azul-profundo);
+            display: inline-block;
+            position: relative;
+        }
+        .section-header h2:after {
+            content: '';
+            width: 70px;
+            height: 3px;
+            background: var(--azul-profundo);
+            display: block;
+            margin: 12px auto 0;
+            border-radius: 4px;
+        }
+        .section-header p {
+            color: #5a6e7e;
+            margin-top: 12px;
+            font-size: 1.1rem;
+        }
+
+        /* Hero con fondo azul degradado y texto blanco */
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 90px;
+            background: var(--azul-gradiente);
+            color: var(--blanco-puro);
+            position: relative;
+            overflow: hidden;
+        }
+        /* Imagen de fondo decorativa en hero */
+        .hero-bg-img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+        .hero-grid {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-content {
+            flex: 1.2;
+        }
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--blanco-puro);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            backdrop-filter: blur(4px);
+        }
+        .hero-content h1 {
+            font-size: 3.3rem;
+            font-weight: 800;
+            color: var(--blanco-puro);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .hero-sub {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--gris-claro);
+            margin-bottom: 18px;
+        }
+        .hero-desc {
+            color: rgba(255,255,255,0.85);
+            line-height: 1.6;
+            margin-bottom: 36px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+        .hero-image {
+            flex: 0.8;
+            background: rgba(255,255,255,0.1);
+            border-radius: 48px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(6px);
+        }
+        .card-icono-grande {
+            background: rgba(255,255,255,0.9);
+            border-radius: 32px;
+            padding: 32px 20px;
+            box-shadow: 0 25px 35px -12px rgba(0,0,0,0.2);
+            color: var(--azul-profundo);
+        }
+        .card-icono-grande img {
+            max-width: 80px;
+            margin-bottom: 10px;
+        }
+
+        /* Nosotros (fondo blanco, texto azul oscuro) */
+        .nosotros {
+            background: var(--blanco-puro);
+        }
+        .nosotros-grid {
+            display: flex;
+            gap: 48px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nosotros-texto {
+            flex: 1.5;
+            font-size: 1.02rem;
+            line-height: 1.65;
+            color: #2c3e4e;
+        }
+        .anos-destacado {
+            background: var(--azul-profundo);
+            color: white;
+            display: inline-block;
+            padding: 8px 24px;
+            border-radius: 40px;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        /* Imagen decorativa en nosotros */
+        .nosotros-imagen {
+            flex: 1;
+            background: #eef2fa;
+            border-radius: 32px;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+        .nosotros-imagen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.7;
+        }
+        .nosotros-imagen i, .nosotros-imagen p {
+            z-index: 2;
+            background: rgba(255,255,255,0.8);
+            padding: 8px 16px;
+            border-radius: 40px;
+        }
+
+        /* Servicios fondo gris claro con tarjetas blancas */
+        .servicios {
+            background: var(--gris-claro);
+        }
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 30px;
+        }
+        .servicio-card {
+            background: var(--blanco-puro);
+            border-radius: 28px;
+            padding: 32px 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 12px 24px -12px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        .servicio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 30px -12px rgba(39,69,116,0.2);
+        }
+        .servicio-icon {
+            font-size: 2.6rem;
+            color: var(--azul-profundo);
+            margin-bottom: 20px;
+        }
+        .servicio-card h3 {
+            font-size: 1.55rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #1e2f3f;
+        }
+        .servicio-card p {
+            color: #5c6f82;
+            line-height: 1.5;
+        }
+        .lista-detalle {
+            margin-top: 14px;
+            list-style: none;
+        }
+        .lista-detalle li {
+            font-size: 0.85rem;
+            margin-top: 6px;
+            color: #2c4c6e;
+        }
+
+        /* Sectores fondo blanco */
+        .sectores {
+            background: var(--blanco-puro);
+        }
+        .sectores-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .sector-chip {
+            background: var(--azul-transparente);
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--azul-profundo);
+            transition: 0.2s;
+            border: 1px solid rgba(39,69,116,0.2);
+        }
+        .sector-chip:hover {
+            background: var(--azul-profundo);
+            color: white;
+        }
+
+        /* Propuesta de valor con fondo azul muy suave */
+        .propuesta {
+            background: #e9f0f8;
+        }
+        .valores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 28px;
+        }
+        .valor-card {
+            background: var(--blanco-puro);
+            border-radius: 28px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: 0.2s;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+        }
+        .valor-icon {
+            font-size: 2.2rem;
+            color: var(--azul-profundo);
+            margin-bottom: 18px;
+        }
+
+        /* CTA con fondo azul oscuro y texto blanco */
+        .cta {
+            background: var(--azul-profundo);
+            text-align: center;
+            padding: 70px 0;
+            color: var(--blanco-puro);
+        }
+        .cta h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .cta .btn-primary {
+            background: white;
+            color: var(--azul-profundo);
+        }
+
+        /* Contacto fondo blanco */
+        .contacto {
+            background: var(--blanco-puro);
+        }
+        .contacto-flex {
+            display: flex;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+        .contacto-info {
+            flex: 1;
+        }
+        .contacto-item {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+        .contacto-item i {
+            width: 50px;
+            height: 50px;
+            background: var(--azul-transparente);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--azul-profundo);
+        }
+
+        /* Mapa/imagen contacto */
+        .contacto-mapa {
+            flex: 1;
+            background: #eef2fa;
+            border-radius: 32px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .contacto-mapa img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            margin-top: 15px;
+            opacity: 0.8;
+        }
+
+        footer {
+            background: var(--azul-oscuro);
+            color: #cdddee;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        /* Imagenes decorativas en secciones */
+        .bg-industrial {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: var(--azul-profundo);
+                padding: 20px;
+                gap: 16px;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-icon {
+                display: block;
+            }
+            .hero-content h1 {
+                font-size: 2.3rem;
+            }
+            section {
+                padding: 70px 0;
+            }
+        }
+        @media (max-width: 560px) {
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container navbar">
+        <div class="logo-area">
+            
+                <img src="logo_transparente.png" alt="Logo HYG" width="240" onerror="this.src='https://placehold.co/44x44/274574/white?text=HYG'">
+            
+            
+        </div>
+        <div class="menu-icon" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#sectores">Sectores</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </div>
+</header>
+
+<main>
+    <!-- HERO INICIO con fondo azul e inversión de colores + imagen de fondo industrial -->
+    <section id="inicio" class="hero">
+        <img class="hero-bg-img" src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format" alt="industria fondo">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge"><i class="fas fa-chart-line"></i> Innovación y Confianza</div>
+                <h1>Innovación Industrial que impulsa tu proyecto</h1>
+                <p class="hero-sub">Suministro, distribución y soluciones integrales para la industria y la construcción.</p>
+                <p class="hero-desc">En INNOVACION INDUSTRIAL HYG ofrecemos soluciones completas para empresas del sector industrial y de la construcción. Nos especializamos en la comercialización de materiales, equipos y suministros, brindando atención profesional, calidad garantizada y cumplimiento en cada proyecto. Integramos logística ágil y asesoría especializada para maximizar la eficiencia de tu obra o planta.</p>
+                <div class="hero-buttons">
+                    <a href="#contacto" class="btn-primary"><i class="fas fa-file-invoice-dollar"></i> Solicitar cotización</a>
+                    <a href="#servicios" class="btn-outline">Explorar servicios</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="card-icono-grande">
+                    <img src="logo_transparente.png" alt="HYG Logo" style="max-width: 70px; margin-bottom: 10px;" onerror="this.src='https://placehold.co/70x70/274574/white?text=HYG'">
+                    <i class="fas fa-hard-hat" style="font-size: 2.5rem; color:#274574; display: block;"></i>
+                    <h3 style="margin-top: 12px;">HYG</h3>
+                    <p>Innovación Industrial</p>
+                    <small>Calidad y compromiso</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOSOTROS con imagen de almacén industrial -->
+    <section id="nosotros" class="nosotros">
+        <div class="container">
+            <div class="section-header">
+                <h2>NOSOTROS</h2>
+                <p>Más de 3 años liderando soluciones industriales</p>
+            </div>
+            <div class="nosotros-grid">
+                <div class="nosotros-texto">
+                    <p><strong>INNOVACION INDUSTRIAL HYG</strong> es una empresa mexicana con sede en Apodaca, Nuevo León, especializada en el suministro de materiales, equipos y soluciones llave en mano para los sectores de construcción, manufactura y proyectos industriales.</p>
+                    <p>Desde 2021 ofrecemos servicios confiables, adaptados a las necesidades particulares de cada cliente, brindando un enfoque integral que abarca desde la planeación de suministros hasta la asesoría técnica en campo. Nuestro equipo combina experiencia comercial y conocimiento técnico para garantizar que cada proyecto cuente con los recursos óptimos en tiempo y forma.</p>
+                    <p>Nuestro compromiso es ofrecer soluciones eficientes, confiables y alineadas a los requerimientos específicos de cada proyecto, asegurando la satisfacción y el éxito conjunto.</p>
+                    <div class="anos-destacado"><i class="far fa-calendar-alt"></i> Desde 2021 impulsando la industria mexicana</div>
+                </div>
+                <div class="nosotros-imagen">
+                    <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?q=80&w=2070&auto=format" alt="Planta industrial">
+                    <i class="fas fa-map-marker-alt" style="font-size: 2.8rem; color:#274574; background: rgba(255,255,255,0.8); padding: 12px; border-radius: 60px;"></i>
+                    <p style="font-weight: 700; margin-top: 16px; background: rgba(255,255,255,0.8); padding: 6px 16px; border-radius: 40px;">Apodaca, Nuevo León</p>
+                    <p style="background: rgba(255,255,255,0.8); padding: 4px 12px; border-radius: 40px;">Centro estratégico industrial</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS ampliados -->
+    <section id="servicios" class="servicios">
+        <div class="container">
+            <div class="section-header">
+                <h2>SERVICIOS</h2>
+                <p>Soluciones integrales para tu operación</p>
+            </div>
+            <div class="servicios-grid">
+                <div class="servicio-card">
+                    <div class="servicio-icon"><i class="fas fa-cubes"></i></div>
+                    <h3>Materiales de construcción</h3>
+                    <p>Cemento, grava, tabique, insumos de obra y agregados pétreos de alta calidad para proyectos estructurales y civiles.</p>
+                    <ul class="lista-detalle"><li>✔ Cemento y mortero</li><li>✔ Grava y arena</li><li>✔ Tabique y block</li></ul>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-icon"><i class="fas fa-microchip"></i></div>
+                    <h3>Materiales industriales</h3>
+                    <p>Materiales metálicos, materias primas para procesos industriales, acero, aluminio y consumibles para manufactura.</p>
+                    <ul class="lista-detalle"><li>✔ Acero estructural</li><li>✔ Materias primas especializadas</li><li>✔ Insumos para fundición</li></ul>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Equipo eléctrico</h3>
+                    <p>Suministro de material eléctrico certificado: cableado, interruptores, tableros de distribución y componentes industriales.</p>
+                    <ul class="lista-detalle"><li>✔ Cableado de potencia</li><li>✔ Tableros eléctricos</li><li>✔ Componentes de control</li></ul>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-icon"><i class="fas fa-tractor"></i></div>
+                    <h3>Maquinaria y equipo</h3>
+                    <p>Equipos de uso general, herramientas industriales, maquinaria ligera y soluciones para talleres y plantas.</p>
+                    <ul class="lista-detalle"><li>✔ Herramientas eléctricas</li><li>✔ Equipos de elevación</li><li>✔ Maquinaria especializada</li></ul>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-icon"><i class="fas fa-truck-ramp-box"></i></div>
+                    <h3>Distribución y logística</h3>
+                    <p>Comercialización eficiente de insumos, distribución justo a tiempo y cadena de suministro confiable para tu proyecto.</p>
+                    <ul class="lista-detalle"><li>✔ Entregas programadas</li><li>✔ Almacenamiento</li><li>✔ Rutas optimizadas</li></ul>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-icon"><i class="fas fa-chalkboard-user"></i></div>
+                    <h3>Servicios complementarios</h3>
+                    <p>Asesoría técnica, soporte administrativo y comercial, desarrollo de proyectos y consultoría para maximizar resultados.</p>
+                    <ul class="lista-detalle"><li>✔ Ingeniería de apoyo</li><li>✔ Cotizaciones técnicas</li><li>✔ Acompañamiento en obra</li></ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTORES -->
+    <section id="sectores" class="sectores">
+        <div class="container">
+            <div class="section-header">
+                <h2>SECTORES QUE ATENDEMOS</h2>
+                <p>Experiencia transversal en rubros clave</p>
+            </div>
+            <div class="sectores-wrapper">
+                <div class="sector-chip"><i class="fas fa-city"></i> Construcción</div>
+                <div class="sector-chip"><i class="fas fa-industry"></i> Industria manufacturera</div>
+                <div class="sector-chip"><i class="fas fa-plug"></i> Sector eléctrico</div>
+                <div class="sector-chip"><i class="fas fa-drafting-compass"></i> Proyectos industriales</div>
+            </div>
+            <p style="text-align: center; margin-top: 40px; max-width: 700px; margin-left: auto; margin-right: auto; color: #4d6272;">Atendemos tanto a PYMES como a grandes contratistas, ofreciendo soluciones a la medida para cada tipo de industria, garantizando eficiencia y rentabilidad.</p>
+        </div>
+    </section>
+
+    <!-- PROPUESTA DE VALOR -->
+    <section class="propuesta">
+        <div class="container">
+            <div class="section-header">
+                <h2>PROPUESTA DE VALOR</h2>
+                <p>¿Por qué elegir HYG?</p>
+            </div>
+            <div class="valores-grid">
+                <div class="valor-card"><div class="valor-icon"><i class="fas fa-headset"></i></div><div class="valor-titulo" style="font-weight:800;">Atención personalizada</div><div class="valor-desc">Cada proyecto es único; diseñamos soluciones específicas según tus necesidades operativas y presupuesto.</div></div>
+                <div class="valor-card"><div class="valor-icon"><i class="fas fa-cubes"></i></div><div class="valor-titulo" style="font-weight:800;">Soluciones integrales</div><div class="valor-desc">Cubrimos desde el suministro hasta la asesoría técnica, ahorrando tiempos y costos de gestión.</div></div>
+                <div class="valor-card"><div class="valor-icon"><i class="fas fa-list-ul"></i></div><div class="valor-titulo" style="font-weight:800;">Amplio catálogo</div><div class="valor-desc">Miles de referencias en materiales, equipos e insumos para responder a cualquier requerimiento industrial.</div></div>
+                <div class="valor-card"><div class="valor-icon"><i class="fas fa-check-circle"></i></div><div class="valor-titulo" style="font-weight:800;">Entregas confiables</div><div class="valor-desc">Compromiso con los plazos y logística eficiente para que tu obra o producción no se detenga.</div></div>
+                <div class="valor-card"><div class="valor-icon"><i class="fas fa-chart-simple"></i></div><div class="valor-titulo" style="font-weight:800;">Experiencia industrial</div><div class="valor-desc">Conocimiento del sector construcción e industria, respaldado por alianzas estratégicas.</div></div>
+                <div class="valor-card"><div class="valor-icon"><i class="fas fa-puzzle-piece"></i></div><div class="valor-titulo" style="font-weight:800;">Adaptación a proyectos</div><div class="valor-desc">Flexibilidad para ajustarnos a cronogramas, especificaciones técnicas y requerimientos especiales.</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta">
+        <div class="container">
+            <h3>¿Listo para trabajar con un proveedor confiable?</h3>
+            <a href="#contacto" class="btn-primary"><i class="fas fa-calculator"></i> Solicitar cotización ahora</a>
+        </div>
+    </div>
+
+    <!-- CONTACTO con imagen de mapa/ubicación -->
+    <section id="contacto" class="contacto">
+        <div class="container">
+		 <center><img src="logo_hyg.png" alt="Logo HYG" width="320" onerror="this.src='https://placehold.co/44x44/274574/white?text=HYG'"></center>
+		 <br><br>
+            <div class="section-header">
+                <h2>CONTACTO</h2>
+                <p>Comunícate con nuestro equipo comercial</p>
+            </div>
+            <div class="contacto-flex">
+                <div class="contacto-info">
+                    <div class="contacto-item"><i class="fas fa-phone-alt"></i><div><strong>Teléfono</strong><br><a href="tel:8182057965" style="text-decoration:none; color:#274574;">8182057965</a></div></div>
+                    <div class="contacto-item"><i class="fas fa-envelope"></i><div><strong>Correo electrónico</strong><br><a href="mailto:innovacionindustrialhyg@gmail.com" style="text-decoration:none; color:#274574;">innovacionindustrialhyg@gmail.com</a></div></div>
+                    <div class="contacto-item"><i class="fas fa-location-dot"></i><div><strong>Oficina y almacén</strong><br>Apodaca, Nuevo León, México<br>Zona metropolitana de Monterrey</div></div>
+                    <div class="contacto-item"><i class="fas fa-clock"></i><div><strong>Horario de atención</strong><br>Lunes a Viernes 9:00 - 18:00 hrs</div></div>
+                </div>
+                <div class="contacto-mapa">
+                    <i class="fas fa-map-marked-alt" style="font-size: 3rem; color:#274574;"></i>
+                    <p style="margin-top: 20px; font-weight: 500;">Apodaca, N.L. - Centro industrial del norte de México</p>
+                    <p>Distribución a todo el país con logística ágil.</p>
+                    <img src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?q=80&w=2070&auto=format" alt="Mapa industrial">
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2025 INNOVACIÓN INDUSTRIAL HYG — Todos los derechos reservados.</p>
+        <p style="font-size: 0.8rem; margin-top: 8px;">Suministro industrial | Construcción | Soluciones integrales</p>
+    </div>
+</footer>
+
+<script>
+    // Menú móvil
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+
+    // GSAP + ScrollTrigger animaciones mejoradas
+    gsap.registerPlugin(ScrollTrigger);
+    
+    gsap.utils.toArray('.hero-content, .hero-image, .nosotros-texto, .nosotros-imagen, .servicio-card, .sector-chip, .valor-card, .contacto-info, .contacto-mapa').forEach(el => {
+        gsap.from(el, {
+            scrollTrigger: {
+                trigger: el,
+                start: "top 85%",
+                toggleActions: "play none none reverse"
+            },
+            opacity: 0,
+            y: 40,
+            duration: 0.8,
+            ease: "power2.out"
+        });
+    });
+
+    gsap.utils.toArray('.section-header h2').forEach(title => {
+        gsap.from(title, {
+            scrollTrigger: {
+                trigger: title,
+                start: "top 80%",
+            },
+            opacity: 0,
+            scale: 0.96,
+            duration: 0.7,
+            y: 15
+        });
+    });
+    
+    gsap.from(".hero-content h1", { duration: 1, y: 30, opacity: 0, delay: 0.2 });
+    gsap.from(".hero-sub, .hero-desc", { duration: 1, y: 20, opacity: 0, delay: 0.3, stagger: 0.1 });
+    gsap.from(".hero-buttons .btn-primary, .hero-buttons .btn-outline", { duration: 0.8, scale: 0.9, opacity: 0, delay: 0.5, stagger: 0.1 });
+    gsap.from(".hero-image", { duration: 1, x: 40, opacity: 0, delay: 0.2 });
+</script>
+</body>
+</html>
