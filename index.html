@@ -290,91 +290,121 @@
             font-size: 1.1rem;
         }
 
-        /* Hero con fondo azul degradado y texto blanco - efecto parallax */
+        /* ========== HERO REDISEÑADO - IMAGEN NÍTIDA SIN TRANSPARENCIA ========== */
         .hero {
             padding-top: 140px;
-            padding-bottom: 90px;
-            background: var(--azul-gradiente);
-            color: var(--blanco-puro);
+            padding-bottom: 120px;
             position: relative;
-            overflow: hidden;
+            background: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format') center center / cover no-repeat;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
-        .hero-bg-img {
+        /* Overlay oscuro sutil solo para mejorar legibilidad del texto, NO opaca la imagen */
+        .hero::before {
+            content: '';
             position: absolute;
             top: 0;
-            right: 0;
-            width: 50%;
+            left: 0;
+            width: 100%;
             height: 100%;
-            object-fit: cover;
-            opacity: 0.08;
-            pointer-events: none;
+            background: linear-gradient(135deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.4) 100%);
+            z-index: 1;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 2;
         }
         .hero-grid {
             display: flex;
             align-items: center;
-            gap: 50px;
+            gap: 60px;
             flex-wrap: wrap;
-            position: relative;
-            z-index: 2;
         }
         .hero-content {
             flex: 1.2;
         }
         .hero-badge {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
             color: var(--blanco-puro);
             display: inline-block;
-            padding: 6px 18px;
+            padding: 8px 20px;
             border-radius: 40px;
             font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255,255,255,0.3);
         }
         .hero-content h1 {
-            font-size: 3.3rem;
+            font-size: 3.8rem;
             font-weight: 800;
             color: var(--blanco-puro);
             line-height: 1.2;
             margin-bottom: 20px;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.3);
         }
         .hero-sub {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 500;
-            color: var(--gris-claro);
-            margin-bottom: 18px;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 20px;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.2);
         }
         .hero-desc {
-            color: rgba(255,255,255,0.85);
+            color: rgba(255,255,255,0.9);
             line-height: 1.6;
             margin-bottom: 36px;
+            font-size: 1.05rem;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.2);
         }
         .hero-buttons {
             display: flex;
             gap: 18px;
             flex-wrap: wrap;
         }
+        /* Ajustes para que los botones se vean bien sobre la imagen */
+        .hero .btn-primary {
+            background: white;
+            color: var(--azul-profundo);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .hero .btn-primary:hover {
+            background: #f0f4fa;
+            transform: translateY(-3px);
+        }
+        .hero .btn-outline {
+            border: 2px solid white;
+            color: white;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(4px);
+        }
+        .hero .btn-outline:hover {
+            background: white;
+            color: var(--azul-profundo);
+        }
         .hero-image {
             flex: 0.8;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(12px);
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
             border-radius: 48px;
-            padding: 20px;
+            padding: 24px;
             text-align: center;
+            border: 1px solid rgba(255,255,255,0.25);
         }
         .card-icono-grande {
             background: rgba(255,255,255,0.95);
             border-radius: 32px;
             padding: 32px 20px;
-            box-shadow: 0 25px 35px -12px rgba(0,0,0,0.2);
+            box-shadow: 0 25px 35px -12px rgba(0,0,0,0.3);
             color: var(--azul-profundo);
         }
         .card-icono-grande img {
-            max-width: 70px;
+            max-width: 80px;
             margin-bottom: 10px;
         }
 
-        /* Nosotros (fondo blanco, texto azul oscuro) */
+        /* Resto de secciones SIN cambios, manteniendo el diseño original */
         .nosotros {
             background: var(--blanco-puro);
         }
@@ -399,7 +429,6 @@
             margin-top: 20px;
             font-weight: 600;
         }
-
         .nosotros-imagen {
             flex: 1;
             background: #eef2fa;
@@ -427,8 +456,6 @@
             padding: 8px 16px;
             border-radius: 40px;
         }
-
-        /* Servicios fondo gris claro con tarjetas blancas */
         .servicios {
             background: var(--gris-claro);
         }
@@ -477,8 +504,6 @@
             margin-top: 6px;
             color: #2c4c6e;
         }
-
-        /* Sectores fondo blanco */
         .sectores {
             background: var(--blanco-puro);
         }
@@ -504,8 +529,6 @@
             color: white;
             transform: scale(1.05);
         }
-
-        /* Propuesta de valor con fondo azul muy suave - 3 columnas fijas en desktop */
         .propuesta {
             background: #e9f0f8;
         }
@@ -536,8 +559,6 @@
             margin-bottom: 10px;
             font-size: 1.2rem;
         }
-
-        /* CTA con fondo azul oscuro y texto blanco */
         .cta {
             background: var(--azul-profundo);
             text-align: center;
@@ -573,8 +594,6 @@
             position: relative;
             z-index: 2;
         }
-
-        /* Contacto fondo blanco */
         .contacto {
             background: var(--blanco-puro);
         }
@@ -607,7 +626,6 @@
         .contacto-item:hover i {
             transform: scale(1.1);
         }
-
         .contacto-mapa {
             flex: 1;
             background: #eef2fa;
@@ -628,15 +646,12 @@
         .contacto-mapa img:hover {
             transform: scale(1.02);
         }
-
         footer {
             background: var(--azul-oscuro);
             color: #cdddee;
             padding: 30px 0;
             text-align: center;
         }
-
-        /* Responsive - ajuste de columnas para tablet y móvil */
         @media (max-width: 900px) {
             .nav-links {
                 display: none;
@@ -656,7 +671,10 @@
                 display: block;
             }
             .hero-content h1 {
-                font-size: 2.3rem;
+                font-size: 2.5rem;
+            }
+            .hero-sub {
+                font-size: 1.1rem;
             }
             section {
                 padding: 70px 0;
@@ -670,7 +688,6 @@
             a, button {
                 cursor: pointer;
             }
-            /* En tablet: 2 columnas */
             .valores-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -680,16 +697,16 @@
                 flex-direction: column;
                 align-items: stretch;
             }
-            /* En móvil: 1 columna */
+            .hero {
+                padding-top: 120px;
+                padding-bottom: 80px;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
             .valores-grid {
                 grid-template-columns: 1fr;
             }
-        }
-
-        /* Parallax adicional para imágenes */
-        .parallax-scroll {
-            transform: translateY(0);
-            transition: transform 0.1s linear;
         }
     </style>
 </head>
@@ -729,9 +746,8 @@
 </header>
 
 <main>
-    <!-- HERO INICIO -->
+    <!-- HERO REDISEÑADO - Imagen nítida y protagonista -->
     <section id="inicio" class="hero">
-        <img class="hero-bg-img" src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format" alt="industria fondo">
         <div class="container hero-grid">
             <div class="hero-content">
                 <div class="hero-badge"><i class="fas fa-chart-line"></i> Innovación y Confianza</div>
@@ -755,7 +771,7 @@
         </div>
     </section>
 
-    <!-- NOSOTROS -->
+    <!-- NOSOTROS (sin cambios) -->
     <section id="nosotros" class="nosotros">
         <div class="container">
             <div class="section-header">
@@ -779,7 +795,7 @@
         </div>
     </section>
 
-    <!-- SERVICIOS -->
+    <!-- SERVICIOS (sin cambios) -->
     <section id="servicios" class="servicios">
         <div class="container">
             <div class="section-header">
@@ -797,7 +813,7 @@
         </div>
     </section>
 
-    <!-- SECTORES -->
+    <!-- SECTORES (sin cambios) -->
     <section id="sectores" class="sectores">
         <div class="container">
             <div class="section-header"><h2>SECTORES QUE ATENDEMOS</h2><p>Experiencia transversal en rubros clave</p></div>
@@ -806,7 +822,7 @@
         </div>
     </section>
 
-    <!-- PROPUESTA DE VALOR - ahora con 3 columnas fijas en desktop -->
+    <!-- PROPUESTA DE VALOR (sin cambios) -->
     <section class="propuesta">
         <div class="container">
             <div class="section-header">
@@ -824,23 +840,21 @@
         </div>
     </section>
 
-    <!-- CTA -->
+    <!-- CTA (sin cambios) -->
     <div class="cta"><div class="container"><h3>¿Listo para trabajar con un proveedor confiable?</h3><a href="#contacto" class="btn-primary"><i class="fas fa-calculator"></i> Solicitar cotización ahora</a></div></div>
 
-    <!-- CONTACTO -->
+    <!-- CONTACTO (sin cambios) -->
     <section id="contacto" class="contacto">
 	<div class="container">
-	
 	<center><img src="logo_hyg.png" alt="Logo HYG" width="320" onerror="this.src='https://placehold.co/44x44/274574/white?text=HYG'"></center>
 		 <br><br>
+	
 	<div class="section-header">
-	<h2>CONTACTO</h2>
-	<p>Comunícate con nuestro equipo comercial</p></div>
-    <div class="contacto-flex"><div class="contacto-info">
+	<h2>CONTACTO</h2><p>Comunícate con nuestro equipo comercial</p></div>
+    <div class="contacto-flex">
+	<div class="contacto-info">
 	<div class="contacto-item">
-	<i class="fas fa-phone-alt"></i>
-	<div><strong>Teléfono</strong><br>
-	<a href="tel:8182057965" style="text-decoration:none; color:#274574;">8182057965</a></div></div>
+	<i class="fas fa-phone-alt"></i><div><strong>Teléfono</strong><br><a href="tel:8182057965" style="text-decoration:none; color:#274574;">8182057965</a></div></div>
     <div class="contacto-item"><i class="fas fa-envelope"></i><div><strong>Correo electrónico</strong><br><a href="mailto:innovacionindustrialhyg@gmail.com" style="text-decoration:none; color:#274574;">innovacionindustrialhyg@gmail.com</a></div></div>
     <div class="contacto-item"><i class="fas fa-location-dot"></i><div><strong>Oficina y almacén</strong><br>Apodaca, Nuevo León, México<br>Zona metropolitana de Monterrey</div></div>
     <div class="contacto-item"><i class="fas fa-clock"></i><div><strong>Horario de atención</strong><br>Lunes a Viernes 9:00 - 18:00 hrs</div></div></div>
@@ -875,10 +889,9 @@
     menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
     document.querySelectorAll('.nav-links a').forEach(link => { link.addEventListener('click', () => { navLinks.classList.remove('active'); }); });
 
-    // GSAP + ScrollTrigger animaciones storytelling
+    // GSAP + ScrollTrigger animaciones
     gsap.registerPlugin(ScrollTrigger);
     
-    // Animaciones de entrada para secciones
     gsap.utils.toArray('.hero-content, .hero-image, .nosotros-texto, .nosotros-imagen, .servicio-card, .sector-chip, .valor-card, .contacto-info, .contacto-mapa').forEach(el => {
         gsap.from(el, {
             scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" },
@@ -900,12 +913,6 @@
     // Efecto flotante sutil en tarjetas de servicios
     gsap.utils.toArray('.servicio-card').forEach(card => {
         gsap.to(card, { y: -5, duration: 2.5, repeat: -1, yoyo: true, ease: "sine.inOut", delay: Math.random() });
-    });
-
-    // Parallax en hero-bg-img
-    gsap.to('.hero-bg-img', {
-        scrollTrigger: { trigger: ".hero", scrub: 1, start: "top top", end: "bottom top" },
-        y: 100, opacity: 0.05, ease: "none"
     });
 </script>
 </body>
